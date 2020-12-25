@@ -8,24 +8,70 @@
 int main()
 {
     printf("vvedite stroku\n");
-    char s[100], s1[100];
+    char s[100], s1[100], w[100];
     gets(s);
     char *st = strtok (s," ");
-    strcat(s1, st);
+    int l=0, r=0;
+    r=strlen(st)-1;
+    strcpy(s1, st);
     st = strtok(NULL, " ");
     while (st != NULL)
     {
 
-
         if (strcmp(st, ".") != 0)
+        {
             // printf(" ");
+            l=2+r;
+            r=r+strlen(st)+1;
+            //  printf("*%s\n", st);
+            if (strchr(st, '.')!=NULL)
+            {
+
+                r=r-1;
+            }
+            // printf("%3d %3d\n", l, r);
+            //  printf("%3d\n", strlen(st));
             strcat(s1, " ");
-            strcat(s1, st);
+        }
+
+        strcat(s1, st);
         st = strtok(NULL, " ");
     }
-
-    //strcat(s1, "\0");
     puts(s1);
+    char st1[r-l+1];
 
-    return 0;
+    strncpy(st1, s1+l, r-l+1);
+    st1[r-l+1]='\0';
+    strncpy(s, s1, r+1);
+    s[r+1]='\0';
+    w[0]='\0';
+    st = strtok(s, " ");
+    printf("Zadacha 2:\n");
+    int k=1;
+    while (st != NULL)
+    {
+        // printf("%d", strlen(st));
+        //printf("*%s %s\n", st, st1 );
+        if (strcmp(st, st1) != 0)
+        {
+            printf("%s ", st);
+            if (k)
+            {
+                strcpy(w, st);
+                k=0;
+            }
+            else
+            {
+                strcat(w, " ");
+                strcat(w, st);
+            }
+        }
+        st = strtok(NULL, " ");
+
+    }
+    printf("\n");
+
+
+
+return 0;
 }
