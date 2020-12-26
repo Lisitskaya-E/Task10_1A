@@ -69,9 +69,34 @@ int main()
         st = strtok(NULL, " ");
 
     }
+
     printf("\n");
 
+    printf("Zadacha 3:\n");
 
+    st=strtok(w, " ");
+    int len;
+    char t[100];
+    strcpy(t, "");
+    while (st != NULL){
+            len= strlen(st);
+            char *k = strrchr (st, st[0]);
+            int k1 = k-st;
+            char le[2], le1[2];
+            le[0]=st[0];
+            le[1]='\0';
+            for (int i=0; i < len; i++){
+                strncpy(le1, st+i, 1);
+                //printf("*%s %s\n", le, le1);
+                if (i == k1 || strcmp(le, le1)){
+                        strcat(t, le1);
+                }
+            }
+            strcat(t, " ");
+            st= strtok (NULL, " " );
+
+    }
+    puts(t);
 
 return 0;
 }
